@@ -7,12 +7,9 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 const allGlob = '**/*.{js,jsx,ts,tsx}';
-const defaultProjectFiles = [
-  'eslint.config.js',
-];
+const defaultProjectFiles = ['eslint.config.js'];
 const ignoreCoverageGlob = 'coverage/**/*';
 const ignoreBuildGlob = 'dist/**/*';
-
 
 export default tseslint.config(
   {
