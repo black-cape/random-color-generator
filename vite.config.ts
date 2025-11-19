@@ -1,4 +1,4 @@
-import {resolve} from 'path';
+import {resolve} from 'node:path';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import {defineConfig} from 'vitest/config';
@@ -14,7 +14,7 @@ export default defineConfig(({mode}) => {
     build: {
       lib: {
         name: 'random-color-generator',
-        entry: resolve(__dirname, 'src/index.ts')
+        entry: resolve(import.meta.dirname, 'src/index.ts')
       },
       rollupOptions: {
         external: ['d3-color'],
