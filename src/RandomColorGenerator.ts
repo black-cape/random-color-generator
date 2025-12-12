@@ -9,7 +9,7 @@ export class RandomColorGenerator {
   protected _seed: number;
   protected value: number;
   protected colorFunc: (color: number) => string;
-  protected cache: Record<string | number, string> = {};
+  protected cache = new Map<string | number, string>();
 
   constructor(seedVal?: number, colorFunc: (color: number) => string = defaultColorFunction) {
     this._seed = seedVal ?? Math.random();
@@ -22,16 +22,19 @@ export class RandomColorGenerator {
   }
 
   public next(key?: string | number): string {
-    let color: string;
-    if (key && key in this.cache) {
-      color = this.cache[key];
+    let color = '';
+    if (key && this.cache.has(key)) {
+      const value = this.cache.get(key);
+      if (value) {
+        color = value;
+      }
     } else {
       this.value += INVERSE_GOLDEN_RATIO;
       this.value %= 1;
       color = this.colorFunc(this.value);
     }
     if (key) {
-      this.cache[key] = color;
+      this.cache.set(key, color);
     }
     return color;
   }
