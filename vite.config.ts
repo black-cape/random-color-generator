@@ -7,9 +7,7 @@ export default defineConfig(({mode}) => {
     resolve: {
       tsconfigPaths: true
     },
-    plugins: [
-      dts({tsconfigPath: mode === 'production' ? 'tsconfig.prod.json' : 'tsconfig.json'})
-    ],
+    plugins: [dts({tsconfigPath: mode === 'production' ? 'tsconfig.prod.json' : 'tsconfig.json'})],
     build: {
       lib: {
         name: 'random-color-generator',
