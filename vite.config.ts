@@ -1,14 +1,13 @@
 import {resolve} from 'node:path';
 import dts from 'vite-plugin-dts';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import {defineConfig} from 'vitest/config';
 
 export default defineConfig(({mode}) => {
   return {
+    resolve: {
+      tsconfigPaths: true
+    },
     plugins: [
-      tsconfigPaths({
-        projects: [mode === 'production' ? 'tsconfig.prod.json' : 'tsconfig.json']
-      }),
       dts({tsconfigPath: mode === 'production' ? 'tsconfig.prod.json' : 'tsconfig.json'})
     ],
     build: {
@@ -16,7 +15,7 @@ export default defineConfig(({mode}) => {
         name: 'random-color-generator',
         entry: resolve(import.meta.dirname, 'src/index.ts')
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: ['d3-color'],
         output: {
           globals: {
