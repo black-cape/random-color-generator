@@ -1,4 +1,4 @@
-import {RandomColorGenerator} from 'src';
+import {RandomColorGenerator} from 'src/index';
 import {expect, test} from 'vitest';
 
 test('can construct without specifying a seed', function () {
