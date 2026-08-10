@@ -3,6 +3,7 @@
 
 import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import {defineConfig, globalIgnores} from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -11,10 +12,8 @@ const defaultProjectFiles = ['eslint.config.js'];
 const ignoreCoverageGlob = 'coverage/**/*';
 const ignoreBuildGlob = 'dist/**/*';
 
-export default tseslint.config(
-  {
-    ignores: [ignoreBuildGlob, ignoreCoverageGlob]
-  },
+export default defineConfig(
+  globalIgnores([ignoreBuildGlob, ignoreCoverageGlob]),
   {
     files: [allGlob]
   },
@@ -57,16 +56,11 @@ export default tseslint.config(
       '@typescript-eslint/array-type': ['warn', {default: 'array-simple'}],
       '@typescript-eslint/consistent-type-imports': ['warn', {fixStyle: 'inline-type-imports'}],
       '@typescript-eslint/no-explicit-any': 'off', // any can be used, but sparingly and for the right reasons
-      '@typescript-eslint/no-misused-promises': 'off',
       '@typescript-eslint/no-redeclare': 'warn',
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
       '@typescript-eslint/no-unnecessary-condition': 'warn',
       '@typescript-eslint/no-unnecessary-template-expression': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', {args: 'none', ignoreRestSiblings: true}],
       '@typescript-eslint/no-unused-expressions': [
         'error',
@@ -76,20 +70,8 @@ export default tseslint.config(
           allowTaggedTemplates: true
         }
       ],
-      '@typescript-eslint/no-use-before-define': [
-        'warn',
-        {
-          functions: false,
-          classes: false,
-          variables: false,
-          typedefs: false
-        }
-      ],
       '@typescript-eslint/no-useless-constructor': 'warn',
-      '@typescript-eslint/restrict-plus-operands': 'off',
-      '@typescript-eslint/restrict-template-expressions': 'off',
-      '@typescript-eslint/return-await': 'warn',
-      '@typescript-eslint/unbound-method': 'off'
+      '@typescript-eslint/return-await': 'warn'
     }
   },
 

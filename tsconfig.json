@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    // File Layout
-    "baseUrl": ".",
-
     // Environment Settings
     // See also https://aka.ms/tsconfig_modules
     "module": "esnext",
@@ -44,7 +41,11 @@
     "noEmit": true,
 
     /* Linting */
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "include": ["src", "test", "vite.config.ts"]
 }

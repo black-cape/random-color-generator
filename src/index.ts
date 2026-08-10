@@ -1,1 +1,1 @@
-export * from './RandomColorGenerator';
+export {RandomColorGenerator} from './RandomColorGenerator';
